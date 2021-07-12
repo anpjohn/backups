@@ -10,9 +10,12 @@ tar -xvf /tmp/backupinstall/main.tar.gz
 ar x /tmp/backupinstall/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
 xz -d /tmp/backupinstall/data.tar.xz 
 tar -xvf data.tar
-rm -rf "/opt/local/Online\ Backup"
+rm -rf "/opt/local/Online Backup"
 mkdir "/opt/local/Online Backup"
 cp -pr /tmp/backupinstall/opt/local/Online\ Backup /opt/local/
+rm /opt/local/Online Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db*
+touch /opt/local/Online Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
+chmod 666 /opt/local/Online Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
 cd /opt/local/Online\ Backup/
 rm -rf /etc/init.d/online-backup*
 mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backup
@@ -31,7 +34,7 @@ cp -pr /opt/local/Online\ Backup/raw_bin/* bin/
 /etc/init.d/online-backup stop
 /etc/init.d/online-backupRM stop
 /etc/init.d/online-backupWA stop
-uuidgen > 3631f908-16f3-463f-ac50-f647e71511e3/config/HID
+uuidgen > /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/HID
 echo 
 echo
 echo "Copy below but change creds"
