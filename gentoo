@@ -32,13 +32,13 @@ cp -pr /opt/local/Online\ Backup/raw_bin/* bin/
 /etc/init.d/online-backupRM stop
 /etc/init.d/online-backupWA stop
 uuidgen > /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/HID
-echo 
-echo
-echo "Copy below but change creds"
-echo "LD_LIBRARY_PATH=/opt/local/Online\ Backup/lib:$LD_LIBRARY_PATH QT_PLUGIN_PATH=/opt/local/"Online Backup"/lib/:$QT_PLUGIN_PATH /opt/local/Online\ Backup/raw_bin/cbbCommandLine addAccount -e thisistheaccount -p 'thisisthepassword' -ssl yes" 
-echo
-read -p "Enter here: " login
-$login
+#echo 
+#echo
+#echo "Copy below but change creds"
+#echo "LD_LIBRARY_PATH=/opt/local/Online\ Backup/lib:$LD_LIBRARY_PATH QT_PLUGIN_PATH=/opt/local/"Online Backup"/lib/:$QT_PLUGIN_PATH /opt/local/Online\ Backup/raw_bin/cbbCommandLine addAccount -e thisistheaccount -p 'thisisthepassword' -ssl yes" 
+#echo
+#read -p "Enter here: " login
+#$login
 cd /opt/local
 cd "Online Backup"
 rm 3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
