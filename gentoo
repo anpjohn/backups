@@ -1,21 +1,27 @@
 rm -rf /tmp/backupinstall
 mkdir /tmp/backupinstall
 cd /tmp/backupinstall
-wget -O /tmp/backupinstall https://s3.amazonaws.com/cb_setups/MBS/3631F908-16F3-463F-AC50-F647E71511E3/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
-wget -O /tmp/backupinstall https://github.com/anpjohn/backups/archive/refs/heads/main.tar.gz
+wget /tmp/backupinstall https://s3.amazonaws.com/cb_setups/MBS/3631F908-16F3-463F-AC50-F647E71511E3/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
+wget /tmp/backupinstall https://github.com/anpjohn/backups/archive/refs/heads/main.tar.gz
 tar -xvf /tmp/backupinstall/main.tar.gz
 ar x /tmp/backupinstall/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
-xz -d data.tar.xz 
+xz -d /tmp/backupinstall/data.tar.xz 
 tar -xvf data.tar
-rm -rf /opt/local/Online\ Backup
-mkdir /opt/local/Online\ Backup
-cp -pr /opt/local/Online\ Backup /opt/local/
+rm -rf "/opt/local/Online\ Backup"
+mkdir "/opt/local/Online Backup"
+cp -pr /tmp/backupinstall/opt/local/Online\ Backup /opt/local/
 cd /opt/local/Online\ Backup/
 rm -rf /etc/init.d/online-backup*
 mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backup
-mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backupRM
-mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backupWA 
-cp -pr raw_bin/* bin/
+mv /tmp/backupinstall/backups-main/online-backupRM /etc/init.d/online-backupRM
+mv /tmp/backupinstall/backups-main/online-backupWA /etc/init.d/online-backupWA 
+chmod 755 /etc/init.d/online-backup
+chmod 755 /etc/init.d/online-backupRM
+chmod 755 /etc/init.d/online-backupWA
+chmod +x /etc/init.d/online-backup
+chmod +x /etc/init.d/online-backupRM
+chmod +x /etc/init.d/online-backupWA
+cp -pr /opt/local/Online\ Backup/raw_bin/* bin/
 /etc/init.d/online-backup start
 /etc/init.d/online-backupRM start
 /etc/init.d/online-backupWA start
