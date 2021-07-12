@@ -1,25 +1,35 @@
-mkdir ub
-cd ub
-wget https://s3.amazonaws.com/cb_setups/MBS/3631F908-16F3-463F-AC50-F647E71511E3/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.1.3.17_20201209184817.deb
-ar x ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.1.3.17_20201209184817.deb
+rm -rf /tmp/backupinstall
+mkdir /tmp/backupinstall
+cd /tmp/backupinstall
+wget -O /tmp/backupinstall https://s3.amazonaws.com/cb_setups/MBS/3631F908-16F3-463F-AC50-F647E71511E3/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
+wget -O /tmp/backupinstall https://github.com/anpjohn/backups/archive/refs/heads/main.tar.gz
+tar -xvf /tmp/backupinstall/main.tar.gz
+ar x /tmp/backupinstall/ubuntu14_AdvancedNetworkProfessionalsLLC_OnlineBackup_v3.2.0.114_20210712170453.deb
 xz -d data.tar.xz 
 tar -xvf data.tar
-mkdir /opt/local
-cp -pr opt/local/Online\ Backup /opt/local/
+rm -rf /opt/local/Online\ Backup
+mkdir /opt/local/Online\ Backup
+cp -pr /opt/local/Online\ Backup /opt/local/
 cd /opt/local/Online\ Backup/
-cp init/init.d/online-backup* /etc/init.d/
-nano /etc/init.d/online-backup
-Line 53 Change:
-"$progpath" >/dev/null 2>&1 &
-LD_LIBRARY_PATH=/opt/local/Online\ Backup/lib:$LD_LIBRARY_PATH QT_PLUGIN_PATH=/opt/local/"Online Backup"/lib/:$QT_PLUGIN_PATH "$progpath" >/dev/null 2>&1 &
-nano /etc/init.d/online-backupRM
-nano /etc/init.d/online-backupWA
+rm -rf /etc/init.d/online-backup*
+mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backup
+mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backupRM
+mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backupWA 
 cp -pr raw_bin/* bin/
 /etc/init.d/online-backup start
-(Should Say OK)
-/etc/init.d/online-backup stop
-uuidgen > 3631f908-16f3-463f-ac50-f647e71511e3/config/HID 
-LD_LIBRARY_PATH=/opt/local/Online\ Backup/lib:$LD_LIBRARY_PATH QT_PLUGIN_PATH=/opt/local/"Online Backup"/lib/:$QT_PLUGIN_PATH /opt/local/Online\ Backup/raw_bin/cbbCommandLine addAccount -e saycor-conference1 -p 'ZitMZYmm' -ssl yes 
-It should be up now as long as it says it was logged in correctly
 /etc/init.d/online-backupRM start
 /etc/init.d/online-backupWA start
+/etc/init.d/online-backup stop
+/etc/init.d/online-backupRM stop
+/etc/init.d/online-backupWA stop
+uuidgen > 3631f908-16f3-463f-ac50-f647e71511e3/config/HID
+echo 
+echo
+echo "Copy below but change creds"
+echo "LD_LIBRARY_PATH=/opt/local/Online\ Backup/lib:$LD_LIBRARY_PATH QT_PLUGIN_PATH=/opt/local/"Online Backup"/lib/:$QT_PLUGIN_PATH /opt/local/Online\ Backup/raw_bin/cbbCommandLine addAccount -e thisistheaccount -p 'thisisthepassword' -ssl yes" 
+echo
+read -p "Enter here: " login
+$login
+/etc/init.d/online-backupRM start
+/etc/init.d/online-backupWA start
+/etc/init.d/online-backup start
