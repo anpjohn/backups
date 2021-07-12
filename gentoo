@@ -28,9 +28,6 @@ chmod +x /etc/init.d/online-backup
 chmod +x /etc/init.d/online-backupRM
 chmod +x /etc/init.d/online-backupWA
 cp -pr /opt/local/Online\ Backup/raw_bin/* bin/
-rm /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db*
-touch /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
-chmod 666 /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
 /etc/init.d/online-backup start
 /etc/init.d/online-backupRM start
 /etc/init.d/online-backupWA start
@@ -38,6 +35,9 @@ chmod 666 /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/
 /etc/init.d/online-backupRM stop
 /etc/init.d/online-backupWA stop
 uuidgen > /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/HID
+rm /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db*
+touch /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
+chmod 666 /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
 echo 
 echo
 echo "Copy below but change creds"
