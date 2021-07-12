@@ -13,9 +13,6 @@ tar -xvf data.tar
 rm -rf "/opt/local/Online Backup"
 mkdir "/opt/local/Online Backup"
 cp -pr /tmp/backupinstall/opt/local/Online\ Backup /opt/local/
-rm /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db*
-touch /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
-chmod 666 /opt/local/Online\ Backup/3631f908-16f3-463f-ac50-f647e71511e3/config/cbbackup.db
 cd /opt/local/Online\ Backup/
 rm -rf /etc/init.d/online-backup*
 mv /tmp/backupinstall/backups-main/online-backup /etc/init.d/online-backup
