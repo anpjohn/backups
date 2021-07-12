@@ -1,3 +1,6 @@
+/etc/init.d/online-backup stop
+/etc/init.d/online-backupRM stop
+/etc/init.d/online-backupWA stop
 rm -rf /tmp/backupinstall
 mkdir /tmp/backupinstall
 cd /tmp/backupinstall
